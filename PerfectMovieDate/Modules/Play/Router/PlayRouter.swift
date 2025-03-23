@@ -9,9 +9,11 @@ import UIKit
 
 class PlayRouter: PlayRouterProtocol {
     static func createModule(with code: String, as player: PlayerType) -> UIViewController {
+        let firestoreService: FirestoreServiceProtocol = FirestoreService()
+
         let view = PlayViewController()
         let presenter: PlayPresenterProtocol = PlayPresenter()
-        let repository: RoomRepository = FirebaseRoomRepository()
+        let repository: RoomRepository = FirebaseRoomRepository(db: firestoreService)
         let movieService: MovieServiceProtocol = TMDBMovieService()
         let interactor: PlayInteractorProtocol = PlayInteractor(
             repository: repository,

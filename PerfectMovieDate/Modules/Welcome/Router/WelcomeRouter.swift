@@ -9,9 +9,11 @@ import UIKit
 
 class WelcomeRouter: WelcomeRouterProtocol {
     static func createModule() -> UIViewController {
+        let firestoreService: FirestoreServiceProtocol = FirestoreService()
+        
         let view = WelcomeViewController()
         let presenter: WelcomePresenterProtocol = WelcomePresenter()
-        let repository: RoomRepository = FirebaseRoomRepository()
+        let repository: RoomRepository = FirebaseRoomRepository(db: firestoreService)
         let interactor: WelcomeInteractorProtocol = WelcomeInteractor(repository: repository)
         let router: WelcomeRouterProtocol = WelcomeRouter()
 

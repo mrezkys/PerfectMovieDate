@@ -9,9 +9,11 @@ import UIKit
 
 class LobbyRouter: LobbyRouterProtocol {
     static func createModule(as playerType: PlayerType) -> UIViewController {
+        let firestoreService: FirestoreServiceProtocol = FirestoreService()
+
         let view = LobbyViewController()
         let presenter: LobbyPresenterProtocol = LobbyPresenter()
-        let repository: RoomRepository = FirebaseRoomRepository() // Use FirebaseRoomRepository here
+        let repository: RoomRepository = FirebaseRoomRepository(db: firestoreService) // Use FirebaseRoomRepository here
         let interactor: LobbyInteractorProtocol = LobbyInteractor(repository: repository)
         let router: LobbyRouterProtocol = LobbyRouter()
 
@@ -26,9 +28,11 @@ class LobbyRouter: LobbyRouterProtocol {
     }
     
     static func createModule(as playerType: PlayerType, with roomCode: String) -> UIViewController {
+        let firestoreService: FirestoreServiceProtocol = FirestoreService()
+
         let view = LobbyViewController()
         let presenter: LobbyPresenterProtocol = LobbyPresenter()
-        let repository: RoomRepository = FirebaseRoomRepository() // Use FirebaseRoomRepository here
+        let repository: RoomRepository = FirebaseRoomRepository(db: firestoreService) // Use FirebaseRoomRepository here
         let interactor: LobbyInteractorProtocol = LobbyInteractor(repository: repository)
         let router: LobbyRouterProtocol = LobbyRouter()
 
