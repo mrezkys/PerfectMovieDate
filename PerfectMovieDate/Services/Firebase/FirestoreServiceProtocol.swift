@@ -13,4 +13,25 @@ protocol FirestoreServiceProtocol: AnyObject {
         documentId: String,
         completion: @escaping (Result<[String: Any], Error>) -> Void
     )
+    
+    func setDocument(
+        collection: String,
+        documentId: String,
+        data: [String: Any],
+        completion: @escaping (Result<Void, Error>) -> Void
+    )
+    
+    func updateDocument(
+        collection: String,
+        documentId: String,
+        data: [String: Any],
+        completion: @escaping (Result<Void, Error>) -> Void
+    )
+
+    func deleteDocument(
+        collection: String,
+        documentId: String,
+        completion: @escaping (Result<Void, Error>) -> Void
+    )
+
 }
