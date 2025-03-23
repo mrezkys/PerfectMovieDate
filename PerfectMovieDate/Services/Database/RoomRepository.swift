@@ -14,7 +14,8 @@ protocol RoomRepository {
     func createUserRoom(roomCode: String, completion: @escaping (Result<Void, Error>) -> Void)
     func invalidateRoomCode(roomCode: String, completion: @escaping (Result<Bool, Error>) -> Void)
     func isRoomCodeAvailable(_ code: String, completion: @escaping (Result<Bool, Error>) -> Void)
-    func addLovedMovie(_ id: String, in roomCode: String, as player: PlayerType, completion: @escaping (Result<Void, Error>) -> Void)
+    func addLovedMovie(_ id: Int, in roomCode: String, as player: PlayerType, completion: @escaping (Result<Void, Error>) -> Void)
+    func checkMatchedMovie(in roomCode: String, completion: @escaping (Result<Int, Error>) -> Void)
 }
 
 class FirebaseRoomRepository: RoomRepository {
@@ -42,7 +43,7 @@ class FirebaseRoomRepository: RoomRepository {
     }
     
     func addLovedMovie(
-        _ id: String,
+        _ id: Int,
         in roomCode: String,
         as player: PlayerType,
         completion: @escaping (Result<Void, Error>) -> Void
@@ -50,7 +51,7 @@ class FirebaseRoomRepository: RoomRepository {
         db.getDocument(collection: "rooms", documentId: roomCode) { result in
             switch result {
             case .success(var data):
-                if var playerMovies = data[player.rawValue] as? [String] {
+                if var playerMovies = data[player.rawValue] as? [Int] {
                     playerMovies.append(id)
                     data[player.rawValue] = playerMovies
                 } else {
@@ -138,5 +139,28 @@ class FirebaseRoomRepository: RoomRepository {
         
         semaphore.wait()
         return available
+    }
+    
+    func checkMatchedMovie(in roomCode: String, completion: @escaping (Result<Int, any Error>) -> Void) {
+        db.getDocument(collection: "rooms", documentId: roomCode) { result in
+            switch result {
+            case .success(let document):
+                guard let player1Movies = document["player1"] as? [Int],
+                      let player2Movies = document["player2"] as? [Int] else {
+                    completion(.failure(NSError(domain: "RoomRepository", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid document structure"])))
+                    return
+                }
+                
+                // Find the first matching movie between player1 and player2
+                if let matchedMovie = player1Movies.first(where: { player2Movies.contains($0) }) {
+                    completion(.success(matchedMovie))
+                } else {
+                    completion(.success(-1)) // No match found
+                }
+                
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }

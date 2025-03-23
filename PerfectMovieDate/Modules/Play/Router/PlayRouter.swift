@@ -17,7 +17,9 @@ class PlayRouter: PlayRouterProtocol {
         let movieService: MovieServiceProtocol = TMDBMovieService()
         let interactor: PlayInteractorProtocol = PlayInteractor(
             repository: repository,
-            movieService: movieService
+            movieService: movieService,
+            roomCode: code,
+            playerType: player
         )
         let router: PlayRouterProtocol = PlayRouter()
 

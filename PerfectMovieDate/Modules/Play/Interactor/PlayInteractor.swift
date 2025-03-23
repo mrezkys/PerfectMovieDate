@@ -11,10 +11,14 @@ class PlayInteractor: PlayInteractorProtocol {
     var presenter: PlayInteractorOutputProtocol?
     private let movieService: MovieServiceProtocol
     private let repository: RoomRepository
+    var roomCode: String
+    var playerType: PlayerType
     
-    init(repository: RoomRepository, movieService: MovieServiceProtocol) {
+    init(repository: RoomRepository, movieService: MovieServiceProtocol, roomCode: String, playerType: PlayerType) {
         self.repository = repository
         self.movieService = movieService
+        self.roomCode = roomCode
+        self.playerType = playerType
     }
     
     func fetchMovies() {
@@ -30,13 +34,24 @@ class PlayInteractor: PlayInteractorProtocol {
         }
     }
     
-    func loveMovie(_ id: String, in roomCode: String, as player: PlayerType) {
-        repository.addLovedMovie(id, in: roomCode, as: player) { result in
+    func loveMovie(_ id: Int) {
+        repository.addLovedMovie(id, in: roomCode, as: playerType) { result in
             switch result {
             case .success(_):
                 self.presenter?.didSuccessLoveMovie()
             case .failure(let failure):
                 self.presenter?.didFailedLoveMovie(failure)
+            }
+        }
+    }
+    
+    func checkMatchedMovie() {
+        repository.checkMatchedMovie(in: roomCode) { result in
+            switch result {
+            case .success(let matchedMovieId):
+                self.presenter?.didFoundMatchedMovie(movieId: matchedMovieId)
+            case .failure(_):
+                self.presenter?.didNotFoundMatchedMovie()
             }
         }
     }

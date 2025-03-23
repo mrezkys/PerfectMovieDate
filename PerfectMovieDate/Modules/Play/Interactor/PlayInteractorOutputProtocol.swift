@@ -14,4 +14,7 @@ protocol PlayInteractorOutputProtocol: AnyObject {
     
     func didSuccessLoveMovie()
     func didFailedLoveMovie(_ error: Error)
+    
+    func didFoundMatchedMovie(movieId: Int)
+    func didNotFoundMatchedMovie()
 }

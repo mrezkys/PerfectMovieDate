@@ -21,9 +21,10 @@ class PlayPresenter: PlayPresenterProtocol {
     }
     
     func didTapYes() {
-//        interactor?.loveMovie(<#T##id: String##String#>, in: <#T##String#>, as: <#T##PlayerType#>)
+        interactor?.loveMovie(movies[currentMovie].id)
         currentMovie += 1
         loadMovie()
+        interactor?.checkMatchedMovie()
     }
     
     func didTapNo() {
@@ -60,6 +61,14 @@ extension PlayPresenter: PlayInteractorOutputProtocol {
     
     func didFailedLoveMovie(_ error: Error) {
         print("Error", error)
+    }
+    
+    func didFoundMatchedMovie(movieId: Int) {
+        print("matchedMovieId: \(movieId)")
+    }
+    
+    func didNotFoundMatchedMovie() {
+        print("not found")
     }
 }
 
