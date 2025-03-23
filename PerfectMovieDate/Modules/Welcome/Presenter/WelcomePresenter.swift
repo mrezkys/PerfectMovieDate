@@ -21,8 +21,9 @@ class WelcomePresenter: WelcomePresenterProtocol {
             router?.navigateToLobby(from: view, as: PlayerType.player2)
         }
     }
-    
-    // MARK: - WelcomeInteractorOutputProtocol
+}
+
+extension WelcomePresenter: WelcomeInteractorOutputProtocol {
     func didCreateRoom(with roomCode: String) {
         if let view = view {
             router?.navigateToLobby(from: view, with: roomCode, as: PlayerType.player1)
@@ -32,4 +33,5 @@ class WelcomePresenter: WelcomePresenterProtocol {
     func didFailToCreateRoom(_ error: Error) {
         view?.displayError(error)
     }
+
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol WelcomePresenterProtocol: WelcomeInteractorOutputProtocol {
+protocol WelcomePresenterProtocol: AnyObject {
     var view: WelcomeViewProtocol? { get set }
     var interactor: WelcomeInteractorProtocol? { get set }
     var router: WelcomeRouterProtocol? { get set }
