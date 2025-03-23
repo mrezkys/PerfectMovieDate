@@ -23,7 +23,7 @@ class FirebaseRoomRepository: RoomRepository {
     init(db: FirestoreServiceProtocol) {
         self.db = db
     }
-
+    
     func generateUniqueRoomCode(completion: @escaping (Result<String, Error>) -> Void) {
         print("generateUniqueRoomCode()")
         DispatchQueue.global().async {
@@ -41,7 +41,12 @@ class FirebaseRoomRepository: RoomRepository {
         }
     }
     
-    func addLovedMovie(_ id: String, in roomCode: String, as player: PlayerType, completion: @escaping (Result<Void, Error>) -> Void) {
+    func addLovedMovie(
+        _ id: String,
+        in roomCode: String,
+        as player: PlayerType,
+        completion: @escaping (Result<Void, Error>) -> Void
+    ) {
         db.getDocument(collection: "rooms", documentId: roomCode) { result in
             switch result {
             case .success(var data):
@@ -51,59 +56,55 @@ class FirebaseRoomRepository: RoomRepository {
                 } else {
                     data[player.rawValue] = [id]
                 }
-                // update
-                //                documentRef.updateData(updatedData) { error in
-                //                    if let error = error {
-                //                        completion(.failure(error))
-                //                    } else {
-                //                        completion(.success(()))
-                //                    }
-                //                }
+                
+                
+                self.db.updateDocument(
+                    collection: "rooms",
+                    documentId: roomCode,
+                    data: data
+                ) { result in
+                    switch result {
+                    case .success(let success):
+                        completion(.success(()))
+                    case .failure(let failure):
+                        completion(.failure(failure))
+                    }
+                }
             case .failure(let failure):
                 completion(.failure(failure))
             }
         }
-//        let documentRef = db.collection("rooms").document(roomCode)
-//        documentRef.getDocument { document, error in
-//            if let document = document, document.exists {
-//                var updatedData = document.data() ?? [:]
-//                if var playerMovies = updatedData[player.rawValue] as? [String] {
-//                    playerMovies.append(id)
-//                    updatedData[player.rawValue] = playerMovies
-//                } else {
-//                    updatedData[player.rawValue] = [id]
-//                }
-//                
-//                documentRef.updateData(updatedData) { error in
-//                    if let error = error {
-//                        completion(.failure(error))
-//                    } else {
-//                        completion(.success(()))
-//                    }
-//                }
-//            } else {
-//                completion(.failure(error ?? NSError(domain: "Room not found", code: 404, userInfo: nil)))
-//            }
-//        }
     }
-    func createUserRoom(roomCode: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    
+    func createUserRoom(
+        roomCode: String,
+        completion: @escaping (Result<Void, Error>) -> Void
+    ) {
         print("createUserRoom()")
-        let room = ["code": roomCode, "player1": [], "player2": nil] as [String : Any]
-        db.collection("rooms").document(roomCode).setData(room) { error in
-            if let error = error {
-                completion(.failure(error))
-            } else {
+        let room = ["code": roomCode, "player1": [], "player2": nil] as [String : Any?]
+        
+        db.setDocument(
+            collection: "rooms",
+            documentId: roomCode,
+            data: room
+        ) { result in
+            switch result {
+            case .success(let success):
                 completion(.success(()))
+            case .failure(let failure):
+                completion(.failure(failure))
             }
         }
     }
     
     func invalidateRoomCode(roomCode: String, completion: @escaping (Result<Bool, Error>) -> Void) {
-        db.collection("rooms").document(roomCode).delete { error in
-            if let error = error {
-                completion(.failure(error))
-            } else {
+        
+        db.deleteDocument(collection: "rooms", documentId: roomCode) { result in
+            switch result {
+            case .success(_):
                 completion(.success(true))
+            case .failure(let failure):
+                completion(.failure(failure))
             }
         }
     }
@@ -120,11 +121,11 @@ class FirebaseRoomRepository: RoomRepository {
             }
         }
     }
-
+    
     private func isRoomCodeAvailableSync(_ code: String) -> Bool {
         let semaphore = DispatchSemaphore(value: 0)
         var available = false
-
+        
         isRoomCodeAvailable(code) { result in
             switch result {
             case .success(let exists):
@@ -134,7 +135,7 @@ class FirebaseRoomRepository: RoomRepository {
             }
             semaphore.signal()
         }
-
+        
         semaphore.wait()
         return available
     }
