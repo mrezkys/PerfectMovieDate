@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A62A4BD32D9069E9005F5E12 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A4BD22D9069E8005F5E12 /* FirestoreService.swift */; };
+		A62A4BD52D9069F2005F5E12 /* FirestoreServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A4BD42D9069F2005F5E12 /* FirestoreServiceProtocol.swift */; };
 		A63854F42C14E1C000456117 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63854F32C14E1C000456117 /* AppDelegate.swift */; };
 		A63854F62C14E1C000456117 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63854F52C14E1C000456117 /* SceneDelegate.swift */; };
 		A63854F82C14E1C000456117 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63854F72C14E1C000456117 /* ViewController.swift */; };
@@ -86,6 +88,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A62A4BD22D9069E8005F5E12 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		A62A4BD42D9069F2005F5E12 /* FirestoreServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreServiceProtocol.swift; sourceTree = "<group>"; };
 		A63854F02C14E1C000456117 /* PerfectMovieDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerfectMovieDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A63854F32C14E1C000456117 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A63854F52C14E1C000456117 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +180,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A62A4BD12D9069D3005F5E12 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				A62A4BD22D9069E8005F5E12 /* FirestoreService.swift */,
+				A62A4BD42D9069F2005F5E12 /* FirestoreServiceProtocol.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		A63854E72C14E1C000456117 = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +339,7 @@
 		A63855372C14EFAB00456117 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A62A4BD12D9069D3005F5E12 /* Firebase */,
 				A6E0D9042C206736003F2736 /* Networking */,
 				A6E0D9032C20672E003F2736 /* Database */,
 			);
@@ -695,10 +709,12 @@
 				A6951B012C58EDE70096359A /* PlayPresenterProtocol.swift in Sources */,
 				A63854F42C14E1C000456117 /* AppDelegate.swift in Sources */,
 				A63855522C162F1700456117 /* LobbyViewController.swift in Sources */,
+				A62A4BD32D9069E9005F5E12 /* FirestoreService.swift in Sources */,
 				A6951AF32C58ED200096359A /* LobbyInteractorProtocol.swift in Sources */,
 				A661D5082C5596A5009691DA /* MovieServiceProtocol.swift in Sources */,
 				A6951AF12C58ED040096359A /* LobbyRouterProtocol.swift in Sources */,
 				A6951AFF2C58EDD30096359A /* PlayInteractorOutputProtocol.swift in Sources */,
+				A62A4BD52D9069F2005F5E12 /* FirestoreServiceProtocol.swift in Sources */,
 				A68FD8AA2C2605220019CA13 /* NetworkLogger.swift in Sources */,
 				A6951AF72C58ED450096359A /* LobbyPresenterProtocol.swift in Sources */,
 				A6A02D732C60864900467B59 /* NetworkError.swift in Sources */,
