@@ -19,32 +19,44 @@ class PlayViewController: UIViewController, PlayViewProtocol {
     }
 
     @IBAction func didTapNoButton(_ sender: Any) {
+        presenter?.didTapNo()
     }
 
     @IBAction func didTapYesButton(_ sender: Any) {
         presenter?.didTapYes()
     }
-    
+
     func updateCurrentMovie(with movie: MovieEntityProtocol) {
         DispatchQueue.main.async {
             self.titleLabel.text = movie.title
             if let posterPath = movie.posterPath {
-                if let imageUrl = URL(string: "https://image.tmdb.org/t/p/w400/\(posterPath)") {
-                    self.loadImage(from: imageUrl)
-                }
+                self.presenter?.loadMoviePosterImage(urlString: posterPath)
             }
         }
-        
     }
     
-    private func loadImage(from url: URL) {
-        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-            guard let self = self, let data = data, error == nil else {
-                return
-            }
-            DispatchQueue.main.async {
-                self.posterImage.image = UIImage(data: data)
-            }
-        }.resume()
+    func updatePosterImage(_ image: UIImage?) {
+        DispatchQueue.main.async {
+            self.posterImage.image = image
+        }
     }
+    
+    func showMatchedMovieModal() {
+        let image = UIImage(systemName: "square.and.arrow.up.circle.fill")
+        let modalVC = ModalViewController(
+            image: image,
+            title: "Matched Movie: Inception",
+            agreeTitle: "End Session",
+            cancelTitle: "Skip",
+            onCancel: {
+                print("User cancelled")
+            },
+            onAgree: {
+                print("User agreed")
+            }
+        )
+        
+        present(modalVC, animated: true, completion: nil)
+    }
+    
 }

@@ -28,6 +28,7 @@ class PlayPresenter: PlayPresenterProtocol {
     }
     
     func didTapNo() {
+        view?.showMatchedMovieModal()
     }
     
     private func loadMovie() {
@@ -35,6 +36,12 @@ class PlayPresenter: PlayPresenterProtocol {
             view?.updateCurrentMovie(with: movie)
         } else {
             interactor?.fetchMovies()
+        }
+    }
+    
+    func loadMoviePosterImage(urlString posterPath: String) {
+        interactor?.loadMoviePosterImage(from: posterPath) { [weak self] image in
+            self?.view?.updatePosterImage(image)
         }
     }
 }

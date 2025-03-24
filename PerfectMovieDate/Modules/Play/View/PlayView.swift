@@ -17,6 +17,12 @@ class PlayViewModel: ObservableObject {
 
 
 struct PlayView: View, PlayViewProtocol {
+    func updatePosterImage(_ image: UIImage?) {
+    }
+    
+    func showMatchedMovieModal() {
+    }
+    
     @ObservedObject var vm: PlayViewModel
     
     var presenter: PlayPresenterProtocol?
@@ -62,22 +68,22 @@ struct PlayView: View, PlayViewProtocol {
 }
 
 
-#Preview {
-    var view = PlayView(vm: PlayViewModel())
-    let presenter: PlayPresenterProtocol = PlayPresenter()
-    let repository: RoomRepository = FirebaseRoomRepository()
-    let movieService: MovieServiceProtocol = TMDBMovieService()
-    let interactor: PlayInteractorProtocol = PlayInteractor(
-        repository: repository,
-        movieService: movieService
-    )
-    let router: PlayRouterProtocol = PlayRouter()
-
-    view.presenter = presenter
-    presenter.view = view
-    presenter.interactor = interactor
-    presenter.router = router
-    interactor.presenter = presenter as? PlayInteractorOutputProtocol
-
-    return view
-}
+//#Preview {
+//    var view = PlayView(vm: PlayViewModel())
+//    let presenter: PlayPresenterProtocol = PlayPresenter()
+//    let repository: RoomRepository = FirebaseRoomRepository()
+//    let movieService: MovieServiceProtocol = TMDBMovieService()
+//    let interactor: PlayInteractorProtocol = PlayInteractor(
+//        repository: repository,
+//        movieService: movieService
+//    )
+//    let router: PlayRouterProtocol = PlayRouter()
+//
+//    view.presenter = presenter
+//    presenter.view = view
+//    presenter.interactor = interactor
+//    presenter.router = router
+//    interactor.presenter = presenter as? PlayInteractorOutputProtocol
+//
+//    return view
+//}

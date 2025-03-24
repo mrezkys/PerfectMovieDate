@@ -18,5 +18,6 @@ protocol PlayPresenterProtocol: AnyObject {
     func viewDidLoad()
     func didTapYes()
     func didTapNo()
+    func loadMoviePosterImage(urlString: String)
     
 }
