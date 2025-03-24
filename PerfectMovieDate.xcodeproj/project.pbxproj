@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A62A4BD32D9069E9005F5E12 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A4BD22D9069E8005F5E12 /* FirestoreService.swift */; };
 		A62A4BD52D9069F2005F5E12 /* FirestoreServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A4BD42D9069F2005F5E12 /* FirestoreServiceProtocol.swift */; };
+		A62A4BD82D91391E005F5E12 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A4BD72D91391E005F5E12 /* ModalViewController.swift */; };
 		A62A4BDC2D913C08005F5E12 /* ImageLoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A4BDA2D913C02005F5E12 /* ImageLoadingService.swift */; };
 		A62A4BDF2D913C1E005F5E12 /* ImageLoadingServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A4BDE2D913C1E005F5E12 /* ImageLoadingServiceProtocol.swift */; };
 		A63854F42C14E1C000456117 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63854F32C14E1C000456117 /* AppDelegate.swift */; };
@@ -92,6 +93,7 @@
 /* Begin PBXFileReference section */
 		A62A4BD22D9069E8005F5E12 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		A62A4BD42D9069F2005F5E12 /* FirestoreServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreServiceProtocol.swift; sourceTree = "<group>"; };
+		A62A4BD72D91391E005F5E12 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		A62A4BDA2D913C02005F5E12 /* ImageLoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadingService.swift; sourceTree = "<group>"; };
 		A62A4BDE2D913C1E005F5E12 /* ImageLoadingServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadingServiceProtocol.swift; sourceTree = "<group>"; };
 		A63854F02C14E1C000456117 /* PerfectMovieDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerfectMovieDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +193,14 @@
 				A62A4BD42D9069F2005F5E12 /* FirestoreServiceProtocol.swift */,
 			);
 			path = Firebase;
+			sourceTree = "<group>";
+		};
+		A62A4BD62D91390A005F5E12 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A62A4BD72D91391E005F5E12 /* ModalViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A62A4BDD2D913C10005F5E12 /* Image */ = {
@@ -512,6 +522,7 @@
 		A6E0D8FF2C204AD5003F2736 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A62A4BD62D91390A005F5E12 /* Views */,
 				A6E0D9002C204ADA003F2736 /* Enum */,
 			);
 			path = Common;
@@ -724,6 +735,7 @@
 				A6951AF92C58ED720096359A /* LobbyViewProtocol.swift in Sources */,
 				A6951B012C58EDE70096359A /* PlayPresenterProtocol.swift in Sources */,
 				A63854F42C14E1C000456117 /* AppDelegate.swift in Sources */,
+				A62A4BD82D91391E005F5E12 /* ModalViewController.swift in Sources */,
 				A63855522C162F1700456117 /* LobbyViewController.swift in Sources */,
 				A62A4BD32D9069E9005F5E12 /* FirestoreService.swift in Sources */,
 				A6951AF32C58ED200096359A /* LobbyInteractorProtocol.swift in Sources */,
