@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A62A4BD32D9069E9005F5E12 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A4BD22D9069E8005F5E12 /* FirestoreService.swift */; };
 		A62A4BD52D9069F2005F5E12 /* FirestoreServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A4BD42D9069F2005F5E12 /* FirestoreServiceProtocol.swift */; };
+		A62A4BDC2D913C08005F5E12 /* ImageLoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A4BDA2D913C02005F5E12 /* ImageLoadingService.swift */; };
+		A62A4BDF2D913C1E005F5E12 /* ImageLoadingServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A4BDE2D913C1E005F5E12 /* ImageLoadingServiceProtocol.swift */; };
 		A63854F42C14E1C000456117 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63854F32C14E1C000456117 /* AppDelegate.swift */; };
 		A63854F62C14E1C000456117 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63854F52C14E1C000456117 /* SceneDelegate.swift */; };
 		A63854F82C14E1C000456117 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63854F72C14E1C000456117 /* ViewController.swift */; };
@@ -90,6 +92,8 @@
 /* Begin PBXFileReference section */
 		A62A4BD22D9069E8005F5E12 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		A62A4BD42D9069F2005F5E12 /* FirestoreServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreServiceProtocol.swift; sourceTree = "<group>"; };
+		A62A4BDA2D913C02005F5E12 /* ImageLoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadingService.swift; sourceTree = "<group>"; };
+		A62A4BDE2D913C1E005F5E12 /* ImageLoadingServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadingServiceProtocol.swift; sourceTree = "<group>"; };
 		A63854F02C14E1C000456117 /* PerfectMovieDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerfectMovieDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A63854F32C14E1C000456117 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A63854F52C14E1C000456117 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -187,6 +191,15 @@
 				A62A4BD42D9069F2005F5E12 /* FirestoreServiceProtocol.swift */,
 			);
 			path = Firebase;
+			sourceTree = "<group>";
+		};
+		A62A4BDD2D913C10005F5E12 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				A62A4BDA2D913C02005F5E12 /* ImageLoadingService.swift */,
+				A62A4BDE2D913C1E005F5E12 /* ImageLoadingServiceProtocol.swift */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 		A63854E72C14E1C000456117 = {
@@ -523,6 +536,7 @@
 		A6E0D9042C206736003F2736 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A62A4BDD2D913C10005F5E12 /* Image */,
 				A661D5042C5595B4009691DA /* Core */,
 				A661D5052C559679009691DA /* API */,
 			);
@@ -700,11 +714,13 @@
 				A6951ADA2C58EA5F0096359A /* TMDBMovieService.swift in Sources */,
 				A6951AE72C58EC910096359A /* WelcomeRouterProtocol.swift in Sources */,
 				A63855332C14E8B400456117 /* WelcomeInteractor.swift in Sources */,
+				A62A4BDC2D913C08005F5E12 /* ImageLoadingService.swift in Sources */,
 				A63855442C15864000456117 /* Room.swift in Sources */,
 				A6E0D8F92C204831003F2736 /* PlayViewController.swift in Sources */,
 				A63855352C14E92C00456117 /* WelcomeRouter.swift in Sources */,
 				A6951AE22C58EADB0096359A /* TMDBMovieResponseEntity.swift in Sources */,
 				A6951AFD2C58EDB90096359A /* PlayInteractorProtocol.swift in Sources */,
+				A62A4BDF2D913C1E005F5E12 /* ImageLoadingServiceProtocol.swift in Sources */,
 				A6951AF92C58ED720096359A /* LobbyViewProtocol.swift in Sources */,
 				A6951B012C58EDE70096359A /* PlayPresenterProtocol.swift in Sources */,
 				A63854F42C14E1C000456117 /* AppDelegate.swift in Sources */,
